@@ -1,0 +1,531 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+   <!--- basic page needs
+   ================================================== -->
+   <meta charset="UTF-8">
+	<title>Kreo</title>
+	<meta name="description" content="">  
+	<meta name="author" content="">
+
+   <!-- mobile specific metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+   ================================================== -->
+   <link rel="stylesheet" href="{% static 'main/base.css' %}">
+   <link rel="stylesheet" href="{% static 'main/main.css' %}">
+   <link rel="stylesheet" href="{% static 'main/vendor.css' %}">     
+   <link rel="stylesheet" href="{% static 'main/fonts.css' %}">   
+	<link rel="stylesheet" href="{% static 'main/vendor.min.css' %}">
+	<link rel="stylesheet" href="{% static 'main/font-awesome/css/font-awesome.css' %}"> 
+	<link rel="stylesheet" href="{% static 'main/font-awesome/css/font-awesome.min.css' %}">    
+   <!-- script
+   ================================================== -->
+	<script src="{% static 'sjs/modernizr.js' %}"></script>
+
+   <!-- favicons
+	================================================== -->
+	<link rel="shortcut icon" href="{% static 'iconnn/favicon.png' %}" >
+
+</head>
+
+<body>
+
+	<!-- header
+   ================================================== -->
+<header id="main-header">
+
+   <div class="row">
+
+      <div class="logo">
+            <a href="{% url 'bboard:index' %}"></a>
+      </div>
+
+		<nav id="nav-wrap">         
+
+         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">
+               <span class="menu-icon">Menu</span>
+         </a>
+         <a class="mobile-btn" href="#" title="Hide navigation">
+            <span class="menu-icon">Menu</span>
+         </a>            
+
+         <ul id="nav" class="nav">
+            <li><a class="smoothscroll" href="#hero">Home.</a></li>
+            <li class="current"><a class="smoothscroll" href="#portfolio">Works.</a></li>
+            <li><a class="smoothscroll" href="#services">Services.</a></li>
+            <li><a class="smoothscroll" href="#about">About.</a></li>
+            <li><a class="smoothscroll" href="#contact">Contact.</a></li>
+			</ul> <!-- end #nav -->
+
+		</nav> <!-- end #nav-wrap -->
+
+		<ul class="header-social">
+         {% if num.facebook %}
+               <li><a href="{{num.facebook}}"><i class="fa fa-facebook"></i></a></li>
+         {% endif %}
+         {% if num.twitter %}
+               <li><a href="{{num.twitter}}"><i class="fa fa-twitter"></i></a></li>
+         {% endif %}  
+
+		</ul>      
+
+	</div>
+
+</header> <!-- end header -->
+
+<!-- homepage hero
+================================================== -->
+   <section id="hero">	
+		<div class="row hero-content">
+
+			<div class="twelve columns hero-container">
+
+            <!-- hero-slider start-->
+            <div id="hero-slider" class="flexslider">
+
+					<ul class="slides">
+                  
+                  {% for i in hero_sliders_text %}
+                  <li>
+							<div class="flex-caption">
+								<h1 class="">{{i.top}}</h1>	
+									
+								<h3 class="">{{i.bottom}}</h3>				   
+							</div>						
+						</li>
+                  {% endfor %}
+
+					</ul>
+
+            </div> <!-- end hero-slider -->				   
+
+			</div> <!-- end twelve columns-->
+
+		</div> <!-- end row -->	
+
+		<div id="more">
+			<a class="smoothscroll" href="#services">More About Us<i class="fa fa-angle-down"></i></a>
+		</div> 	
+
+	</section> <!-- end homepage hero -->
+
+
+<!-- portfolio
+================================================== -->
+   <section id="portfolio">
+
+		<div class="row section-head">
+
+		<div class="twelve columns">
+
+			<h1>Our Latest Projects<span>.</span></h1>
+
+
+			<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+			</p>
+
+		</div>
+
+	</div> <!-- end section-head -->
+
+      <div class="row items">
+
+         <!-- portfolio-wrapper -->
+         <div id="portfolio-wrapper" class="bgrid-fourth s-bgrid-third tab-bgrid-half">
+            
+            {% for work in works %}
+
+            <div class="bgrid folio-item">
+               <div class="item-wrap">
+                  <a href="#modal-01">
+                     <img src="{{work.image.url}}" alt="{{work.name_work}}">
+                     <div class="overlay"></div>                       
+                     <div class="portfolio-item-meta">
+                        <h5>{{work.name_work}}</h5>
+                        <p>{{work.cetegory}}</p>
+                     </div> 
+                     <div class="link-icon"><i class="fa fa-plus"></i></div>
+                  </a>
+               </div>
+               
+               
+            </div> <!-- item end -->
+            
+            {% endfor %}
+
+         </div> <!-- end portfolio-wrapper -->
+         
+         {% for work in works %}
+            
+         
+            
+         <div id="modal-01" class="popup-modal mfp-hide">
+
+            <div class="description-box">
+            <p>{{work.description}}</p>
+            </div>
+         </div>
+         {% endfor %}
+         <!-- modal popup========================================================= -->
+         
+         <!-- modal-01 end -->
+         
+
+      </div>  <!-- end row -->
+
+   </section> <!-- end portfolio -->
+
+
+   <!-- Services Section
+   ================================================== -->
+   <section id="services">
+
+   	<div class="row section-head">
+
+      	<div class="twelve columns">
+            
+            {% for i in awesome %}
+               
+            
+               
+      		<h1><span>{{i.textt2}}</span></h1>
+
+	         <hr />      	         
+
+            <p>{{i.textt2}}</p>
+            {% endfor %}
+	      </div>
+
+      </div> <!-- end section-head -->
+
+      <div class="row mobile-no-padding">      	
+
+	      <div class="service-list bgrid-third s-bgrid-half tab-bgrid-whole group">
+            
+            {% for i in descriptionOur %}
+               
+            
+               
+	      	<div class="bgrid">	               
+
+	            <h3>{{i.category}}.</h3>
+
+	            <div class="service-content">	                  
+		            <p>{{i.text}} </p> 
+	         	</div>  
+
+				</div> <!-- end bgrid -->
+            {% endfor %}
+				<!-- end bgrid -->
+
+	      </div> <!-- end service-list -->	      
+
+      </div> <!-- end row -->      
+
+   </section> <!-- end services -->
+
+
+   <!-- About Section
+   ================================================== -->
+   <section id="about">
+
+   	<div class="row section-head">
+         
+         {% for i in who %}
+            
+         
+            
+      	<div class="twelve columns">
+
+      		<h1><span>{{i.who_are}}.</span></h1>
+
+	         <hr />     	    
+
+	         <p>{{i.description_who}}</p>
+         {% endfor %}
+	      </div> <!-- end section-head -->
+
+      </div>
+
+      <div class="row mobile-no-padding">       	
+
+      	<div class="process bgrid-half tab-bgrid-whole group">
+            {% for i in ourproc %}
+      		<div class="bgrid">
+
+			      <h3>{{i.text1}}.</h3>	
+
+			      <p>{{i.text2}}</p>
+
+		   	</div>
+
+      		{%endfor%}
+
+      	</div> <!-- end process -->      	
+
+     	</div> <!-- end row -->
+
+
+    <div class="row team section-head">
+
+        <div class="twelve columns">
+
+			<h1>Meet Our Team<span>.</span></h1>
+
+			<hr />	         
+
+        </div>
+
+	</div> <!-- end section-head -->
+
+    <div class="row">
+
+        <div id="team-wrapper" class="bgrid-fourth s-bgrid-third tab-bgrid-half mob-bgrid-whole group">
+         
+         {% for member in our_team %}
+            
+         
+            
+            <div class="bgrid member">
+
+					<div class="member-pic">
+						<img src="{{member.image.url}}" alt=""/>
+                  <div class="mask"></div>       	
+               </div>
+               <div class="member-name">
+                  <h3>{{member.name}}</h3>
+                  <span>{{member.position}}</span>
+               </div>
+
+               <p>{{member.description}}</p>
+               <ul class="member-social">
+                  
+                  {% if member.facebook %}
+                  <li><a href="{{member.facebook}}"><i class="fa fa-facebook"></i></a></li>
+                  {% endif %}
+                  {% if member.twitter %}
+                  <li><a href="{{member.twitter}}"><i class="fa fa-twitter"></i></a></li>
+                  {% endif %}
+                  
+                  {% if member.skype %}
+                  <li><a href="{{member.skype}}"><i class="fa fa-skype"></i></a></li>
+                  {% endif %}
+                  
+               </ul>
+               
+
+            </div> <!-- end member -->
+            
+         {% endfor %}
+            
+         </div> <!-- end team-wrapper -->
+
+      </div> <!-- end row -->
+      
+      {% for i in button %}
+         
+      
+         
+      <div id="call-to-action">	       
+
+		   <div class="row section-ads">
+
+		      <div class="twelve columns">		         		
+
+			      <h2><span>{{i.text}}</span></a></h2>
+
+			      <p>
+			      {{i.description}}				
+					</p>
+
+					<div class="action">
+			         <a href="#contact" >{{i.button}}</a>
+	         	</div>
+
+			   </div>
+     
+		   </div> <!-- end section-ads -->		         	         
+         {% endfor %}   
+	   </div> <!-- end call-to-action -->	           
+   
+   </section> <!-- end about -->  
+
+
+   <!-- Testimonials Section
+   ================================================== -->
+   <section id="testimonials">
+
+      <div class="row content flex-container">
+    
+         <div id="testimonial-slider" class="flexslider">
+            
+            
+               
+            
+               
+            <ul class="slides">
+               {% for i in feedback %}
+               <li>
+                  <p>{{i.description}}
+
+                  <div class="testimonial-author">
+                     
+                     {% if i.avatar %}
+                        
+                     
+                        <img src="{{i.avatar.url}}" alt="Author image">
+                     {% endif %}
+                     <div class="author-info">
+                     {{i.name}}
+                     </div>
+                  </div>
+               </li> <!-- end slide -->
+            {% endfor %}
+               
+
+            </ul> <!-- end slides -->
+
+         </div> <!-- end flexslider -->         
+        
+      </div> <!-- end row -->
+
+   </section> <!-- end testimonials section -->  
+
+
+   <!-- contact
+   ================================================== -->
+   <section id="contact">
+
+   	<div class="row section-head">
+
+   		<div class="twelve columns">
+
+	         <h1>Get In Touch With Us<span>.</span></h1>
+
+	         <hr />	        
+
+	      </div>
+
+      </div> <!-- end section-head -->
+
+      <div class="row">
+      	
+      	<div id="contact-form" class="six columns tab-whole left">
+
+            <!-- form -->
+            <form  method="post"  >
+      			{% csrf_token %}
+               {{ form.as_p }}
+               <input type="submit" value="Submit">
+      		</form> <!-- Form End -->
+
+            <!-- contact-warning -->
+
+
+         </div>
+
+         <div class="six columns tab-whole right">
+
+            <p class="lead">{{num.description}}
+
+	         <h3 class="address">Come Visit</h3>
+            
+            
+               
+            {% if num.adress %}
+               
+            
+               
+	         <p>
+            {{num.adress}}
+            </p>
+            {% endif %}
+            <h3>Contact Numbers:</h3>
+			   
+            {% if  num.phoneNumber %}
+               
+           
+               
+            <p>Phone: {{num.phoneNumber}}
+			   </p>
+            {% endif %}
+               	
+         </div>     	
+
+      </div> <!-- end row -->     
+
+   </section>  <!-- end contact -->
+
+
+   <!-- Footer
+   ================================================== -->
+   <footer>
+
+      <div class="row">  
+
+      	<div class="twelve columns content group">
+      		
+				<ul class="social-links">
+               
+               {% if num.facebook %}
+               <li><a href="{{num.facebook}}"><i class="fa fa-facebook-square"></i></a></li>
+               {% endif %}
+               {% if num.twitter %}
+               <li><a href="{{num.twitter}}"><i class="fa fa-twitter-square"></i></a></li>
+               {% endif %}              
+               {% if num.youtube %}
+               <li><a href="{{num.youtube}}"><i class="fa fa-youtube-play"></i></a></li>
+               {% endif %}
+               {% if num.vimeo %}
+               <li><a href="{{num.vimeo}}"><i class="fa fa-vimeo-square"></i></a></li>
+               {% endif %}
+               {% if num.flick %}
+               <li><a href="{{num.flick}}"><i class="fa fa-flickr"></i></a></li>
+               {% endif %}               
+               {% if num.skype %}
+               <li><a href="{{num.skype}}"><i class="fa fa-skype"></i></a></li>
+               {% endif %}
+            </ul>
+
+            <hr />
+
+            
+
+      	</div>           
+
+
+        <div id="go-top">
+            <a class="smoothscroll" title="Back to Top" href="#hero">Back to Top<i class="fa fa-angle-up"></i></a>
+        </div>
+
+        </div> <!-- end row -->
+
+    </footer> <!-- end footer -->
+
+    <div id="preloader"> 
+        <div id="loader"></div>
+    </div> 
+
+<!-- Java Script================================================== --> 
+<script src="{% static 'sjs/jquery-1.11.3.min.js' %}"></script>
+<script src="{% static 'sjs/jquery-migrate-1.2.1.min.js' %}"></script>
+<script src="{% static 'sjs/jquery.flexslider-min.js' %}"></script>
+<script src="{% static 'sjs/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'sjs/jquery.validate.min.js' %}"></script>
+<script src="{% static 'sjs/jquery.fittext.js' %}"></script>
+<script src="{% static 'sjs/jquery.placeholder.min.js' %}"></script>
+<script src="{% static 'sjs/jquery.magnific-popup.min.js' %}"></script>  
+<script src="{% static 'sjs/main.js' %}"></script>
+
+</body>
+
+</html>
